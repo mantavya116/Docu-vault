@@ -88,8 +88,8 @@ Whether it's PDFs, images, spreadsheets, or text files — upload it once, acces
 ## 🏗️ Architecture
 
 ```
-┌─────────────────┐     HTTP/REST      ┌─────────────────────┐     Cloud Storage     ┌──────────────┐
-│                 │  ←──────────────→   │                     │  ←────────────────→   │              │
+┌─────────────────┐     HTTP/REST      ┌─────────────────────┐     Cloud Storage    ┌──────────────┐
+│                 │  ←──────────────→  │                     │  ←────────────────→  │              │
 │   React (Vite)  │                    │  Node.js / Express  │                      │  Cloudinary  │
 │   Frontend      │                    │  Backend API        │                      │  (Files)     │
 │                 │                    │                     │                      │              │
@@ -624,33 +624,6 @@ Contributions are welcome! Please follow these steps:
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-## 🙏 Acknowledgments
-
-- **React** - UI library
-- **Vite** - Build tool
-- **Tailwind CSS** - Styling framework
-- **Express.js** - Backend framework
-- **MongoDB** - Database
-- **Cloudinary** - Cloud storage
-- **JWT** - Authentication
-
----
-
-## 📞 Support
-
-For issues, questions, or suggestions:
-- 📧 Email: [your-email@example.com]
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/docuvault/issues)
-- 📖 Documentation: See `FIXES_APPLIED.md` for detailed changelog
 
 ---
 
