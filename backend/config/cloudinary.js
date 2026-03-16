@@ -8,6 +8,7 @@
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
+const path = require("path");
 
 // Configure Cloudinary with environment variables
 cloudinary.config({
@@ -16,15 +17,25 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// File extensions that Cloudinary treats as images
+const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "bmp", "webp", "svg", "ico", "tiff"];
+
 // Configure Multer storage to upload files directly to Cloudinary
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: {
-    folder: "cloud-dms", // Cloudinary folder name
-    // Allow common document and image formats
-    allowed_formats: ["pdf", "doc", "docx", "jpg", "jpeg", "png", "txt"],
-    // Use "raw" resource type for non-image files (PDF, DOC, TXT, etc.)
-    resource_type: "auto",
+  params: async (req, file) => {
+    const ext = path.extname(file.originalname).replace(".", "").toLowerCase();
+    const isImage = IMAGE_EXTENSIONS.includes(ext);
+
+    return {
+      folder: "cloud-dms",
+      // Use "image" for image files, "raw" for everything else.
+      // "raw" preserves the file byte-for-byte (PDF, DOCX, TXT, etc.)
+      resource_type: isImage ? "image" : "raw",
+      // Preserve original extension for raw files
+      public_id: `${Date.now()}-${file.originalname.replace(/\.[^/.]+$/, "")}`,
+      format: isImage ? ext : undefined,
+    };
   },
 });
 
@@ -36,4 +47,4 @@ const upload = multer({
   },
 });
 
-module.exports = { cloudinary, upload };
+module.exports = { cloudinary, upload, IMAGE_EXTENSIONS };

@@ -15,12 +15,24 @@ const ALLOWED_TYPES = [
   "application/pdf",
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "application/vnd.ms-powerpoint",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   "image/jpeg",
   "image/png",
+  "image/gif",
+  "image/webp",
   "text/plain",
+  "text/csv",
+  "application/zip",
+  "application/x-rar-compressed",
+  "application/json",
+  "application/xml",
+  "text/xml",
 ];
 
-const ALLOWED_EXTENSIONS = ["PDF", "DOC", "DOCX", "JPG", "PNG", "TXT"];
+const ALLOWED_EXTENSIONS = ["PDF", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "JPG", "PNG", "GIF", "TXT", "CSV", "ZIP", "RAR", "JSON"];
 
 const UploadPage = () => {
   const [file, setFile] = useState(null);
@@ -153,7 +165,7 @@ const UploadPage = () => {
             id="file-input"
             type="file"
             className="hidden"
-            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt"
+            accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.webp,.txt,.csv,.zip,.rar,.json,.xml"
             onChange={(e) => e.target.files[0] && handleFileSelect(e.target.files[0])}
           />
 

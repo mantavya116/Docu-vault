@@ -41,19 +41,16 @@ const DocumentsPage = () => {
   const handleDownload = async (id, fileName) => {
     try {
       const response = await downloadDocument(id);
-      
-      // Fetch the actual file data as a blob
-      const fileResponse = await fetch(response.data.fileURL);
-      const blob = await fileResponse.blob();
-      
-      // Forcing the browser to download the file instead of opening it
+
+      // The backend now returns the file as a blob directly
+      const blob = new Blob([response.data]);
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", fileName); // Force download
+      link.setAttribute("download", fileName); // Force download with original name
       document.body.appendChild(link);
       link.click();
-      
+
       // Clean up
       window.URL.revokeObjectURL(url);
       document.body.removeChild(link);

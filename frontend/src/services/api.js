@@ -72,9 +72,11 @@ export const getDocuments = (search = "") =>
   api.get("/documents", { params: { search } });
 
 /**
- * Get the download URL for a specific document.
+ * Download a document — returns the actual file as a blob.
+ * The backend proxies the file from Cloudinary.
  */
-export const downloadDocument = (id) => api.get(`/documents/download/${id}`);
+export const downloadDocument = (id) =>
+  api.get(`/documents/download/${id}`, { responseType: "blob" });
 
 /**
  * Delete a document by its ID.

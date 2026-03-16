@@ -39,6 +39,13 @@ const documentSchema = new mongoose.Schema({
     required: true,
   },
 
+  // Cloudinary resource type ("image" or "raw")
+  resourceType: {
+    type: String,
+    enum: ["image", "raw"],
+    default: "raw",
+  },
+
   // Reference to the user who uploaded this document
   userId: {
     type: mongoose.Schema.Types.ObjectId,
