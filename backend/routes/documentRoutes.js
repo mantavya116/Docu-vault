@@ -1,0 +1,30 @@
+// ============================================================
+// routes/documentRoutes.js — Document Routes
+// ============================================================
+// All routes in this file are protected by JWT middleware.
+// ============================================================
+
+const express = require("express");
+const router = express.Router();
+const { protect } = require("../middleware/auth");
+const { upload } = require("../config/cloudinary");
+const {
+  uploadDocument,
+  getDocuments,
+  downloadDocument,
+  deleteDocument,
+} = require("../controllers/documentController");
+
+// POST   /api/documents/upload       — Upload a document
+router.post("/upload", protect, upload.single("file"), uploadDocument);
+
+// GET    /api/documents              — List all documents (with optional ?search=)
+router.get("/", protect, getDocuments);
+
+// GET    /api/documents/download/:id — Get download URL for a document
+router.get("/download/:id", protect, downloadDocument);
+
+// DELETE /api/documents/:id          — Delete a document
+router.delete("/:id", protect, deleteDocument);
+
+module.exports = router;
