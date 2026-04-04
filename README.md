@@ -5,8 +5,8 @@
 <h1 align="center">📄 DocuVault</h1>
 
 <p align="center">
-  <strong>A secure, cloud-based Document Management System with File Sharing</strong><br/>
-  Upload · Preview · Download · Share · Manage — all from your browser.
+  <strong>Enterprise-Grade Cloud Document Management System</strong><br/>
+  Secure file storage, intelligent sharing, and comprehensive analytics — all in one platform.
 </p>
 
 <p align="center">
@@ -23,127 +23,150 @@
 
 ## 🌟 Overview
 
-**DocuVault** is a production-ready, full-stack web application that lets users securely upload, store, preview, and download documents in the cloud. Files are stored on **AWS S3** with metadata in **MongoDB**, and the entire system is protected by **JWT-based authentication**.
+**DocuVault** is a production-ready, full-stack document management system that combines secure cloud storage with intelligent file sharing capabilities. Built with modern technologies and enterprise-grade security, it provides a seamless experience for managing documents across teams and organizations.
 
-Whether it's PDFs, images, spreadsheets, or text files — upload it once, access it anywhere.
+### Key Highlights
 
-**✨ Latest Updates:**
-- ✅ **AWS CloudWatch Logging** — Centralized logging and monitoring with structured JSON logs
-- ✅ **AWS S3 Integration** — Migrated from Cloudinary to AWS S3 for cost-effective, scalable storage
-- ✅ **File Sharing with Public Links** — Generate secure shareable links with password protection and expiration
-- ✅ **Cascade Deletion** — Share links automatically removed when documents are deleted
-- ✅ **Enhanced Security** — Password validation (min 6 chars), XSS protection, input sanitization
-- ✅ **Better UX** — Loading states for async actions, improved error handling
-- ✅ **Utility Scripts** — Database cleanup and cascade deletion testing tools
-- ✅ **Code Quality** — Constants for magic numbers, optimized React hooks, memory-efficient logging
-- ✅ Environment-based configuration for production deployment
-- ✅ Enhanced CORS security with origin whitelist
-- ✅ Database indexes for optimized query performance
+- 🔒 **Bank-Level Security** — JWT authentication, bcrypt encryption, and comprehensive access controls
+- ☁️ **AWS-Powered Storage** — Scalable S3 storage with CloudWatch monitoring
+- 🔗 **Smart Sharing** — Password-protected links with granular permissions and expiration controls
+- 📊 **Analytics Dashboard** — Track access patterns, downloads, and user engagement
+- 🎨 **Modern UI/UX** — Responsive design with glassmorphism effects and smooth animations
+- ⚡ **High Performance** — Optimized database queries with strategic indexing
+- 🛡️ **XSS Protection** — Input sanitization and secure file handling
 
 ---
 
 ## ✨ Features
 
 ### 🔐 Authentication & Security
-- **User registration & login** with secure JWT token-based authentication
-- **Password encryption** using bcrypt (10 salt rounds)
-- **Protected routes** — only authenticated users can access their documents
-- **Per-user isolation** — users can only view, download, and delete their own files
-- **CORS whitelist** — configurable allowed origins for production security
-- **CloudWatch logging** — Track authentication events, errors, and security incidents
-- **Environment variables** — sensitive credentials never hardcoded
 
-### 🔗 File Sharing (NEW!)
-- **Generate shareable links** — Create unique, secure links for any document
-- **Password protection** — Optional password encryption with bcrypt (minimum 6 characters)
-- **Expiration control** — Set links to expire after 1h, 24h, 7d, 30d, or never
-- **Permission levels** — Choose between view-only or download access
+- **JWT-based authentication** with secure token management
+- **Password encryption** using bcrypt (10 salt rounds, minimum 6 characters)
+- **Protected routes** with middleware-based authorization
+- **Per-user data isolation** — users can only access their own documents
+- **CORS whitelist** — configurable allowed origins for production security
+- **Environment-based configuration** — sensitive credentials never hardcoded
+- **CloudWatch logging** — comprehensive audit trails for security monitoring
+
+### 🔗 Intelligent File Sharing
+
+- **Unique shareable links** — 32-character cryptographically secure tokens
+- **Password protection** — Optional bcrypt-encrypted passwords (minimum 6 characters)
+- **Flexible expiration** — Set links to expire after 1h, 24h, 7d, 30d, or never
+- **Granular permissions** — Choose between view-only or download access
 - **Access analytics** — Track views, downloads, and access history with IP logging
 - **Public access** — Recipients don't need an account to view shared files
 - **Link management** — Toggle active/inactive status or delete links anytime
-- **My Shares dashboard** — Centralized view of all your shared links with analytics
-- **Cascade deletion** — Share links automatically deleted when document is removed
+- **Centralized dashboard** — "My Shares" page with comprehensive analytics
+- **Cascade deletion** — Share links automatically removed when document is deleted
 - **XSS protection** — File names sanitized to prevent cross-site scripting attacks
 
-### 📤 File Upload
-- **Drag & drop** or click-to-browse file upload
-- **Real-time upload progress** indicator with percentage
-- **Client + server-side validation** for file type and size
-- **15+ supported file types**: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, JPG, PNG, GIF, TXT, CSV, ZIP, RAR, JSON, XML, and more
-- **10 MB max** file size per upload
-- **AWS S3 integration** for reliable, cost-effective cloud storage
+### 📤 File Upload & Management
 
-### 👁️ File Preview
-- **In-app preview modal** — view files without downloading
-- **Image preview** (JPG, PNG, GIF, WebP, SVG, BMP) — rendered inline
-- **PDF preview** — displayed using the browser's built-in PDF viewer
-- **Text & code preview** (TXT, CSV, JSON, XML, JS, CSS, HTML, MD) — rendered in a dark-themed code block
-- **Unsupported types** show a clear fallback with a download button
-- **Keyboard shortcut** — press `Esc` to close the preview
+- **Drag & drop interface** with click-to-browse fallback
+- **Real-time progress tracking** with percentage indicator
+- **Multi-layer validation** — Client and server-side checks for type and size
+- **15+ supported formats** — PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, JPG, PNG, GIF, TXT, CSV, ZIP, RAR, JSON, XML, and more
+- **10 MB file size limit** (configurable)
+- **AWS S3 integration** — Reliable, cost-effective cloud storage
+- **Optimized queries** — Database indexes for lightning-fast searches
 
-### 📥 File Download
-- **Byte-perfect downloads** — files are streamed through the backend, preserving the exact original content
-- **Correct MIME types** and `Content-Disposition` headers for every file format
-- **No CORS issues** — the backend streams the file directly from S3
-- **Automatic filename preservation** — downloads use the original filename
+### 👁️ File Preview & Download
 
-### 🗂️ Document Management
-- **Dashboard** with welcome banner, document count stats, and recent files
-- **Documents page** with full list of all uploaded files
-- **Real-time search** by filename with debounced input (400ms)
-- **One-click delete** with confirmation dialog — removes from both S3 and MongoDB
-- **Optimized queries** with database indexes for fast performance
+- **In-app preview modal** — View files without downloading
+- **Image preview** — Inline rendering for JPG, PNG, GIF, WebP, SVG, BMP
+- **PDF preview** — Browser's built-in PDF viewer integration
+- **Text & code preview** — Dark-themed syntax highlighting for TXT, CSV, JSON, XML, JS, CSS, HTML, MD
+- **Fallback handling** — Clear download option for unsupported types
+- **Keyboard shortcuts** — Press `Esc` to close preview
+- **Byte-perfect downloads** — Files streamed through backend, preserving original content
+- **Correct MIME types** — Proper Content-Disposition headers for all formats
+- **No CORS issues** — Backend streams files directly from S3
 
-### 🎨 UI/UX
-- **Modern, responsive design** built with Tailwind CSS
-- **Dark theme** with glassmorphism effects and gradient accents
-- **Smooth animations** and transitions throughout
+### 📊 Analytics & Monitoring
+
+- **Access tracking** — Monitor who accessed shared links and when
+- **Download analytics** — Track download counts per share link
+- **IP logging** — Security audit trail with IP addresses and user agents
+- **Last 50 access entries** — Memory-efficient logging with automatic rotation
+- **CloudWatch integration** — Centralized logging and monitoring dashboards
+- **Structured JSON logs** — Easy parsing and analysis
+- **Error tracking** — Comprehensive error logging with stack traces
+
+### 🎨 User Interface
+
+- **Modern, responsive design** — Built with Tailwind CSS
+- **Dark theme** — Glassmorphism effects and gradient accents
+- **Smooth animations** — Transitions throughout the application
 - **Custom scrollbar** styling
-- **Mobile-friendly** — works perfectly on all screen sizes
-- **Loading states** and error handling for all operations
-- **Empty states** with helpful messages and call-to-actions
+- **Mobile-friendly** — Works perfectly on all screen sizes
+- **Loading states** — Visual feedback for all async operations
+- **Empty states** — Helpful messages and call-to-actions
+- **Error handling** — User-friendly error messages
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────┐     HTTP/REST      ┌─────────────────────┐     Cloud Storage    ┌──────────────┐
-│                 │  ←──────────────→  │                     │  ←────────────────→  │              │
-│   React (Vite)  │                    │  Node.js / Express  │                      │   AWS S3     │
-│   Frontend      │                    │  Backend API        │                      │  (Files)     │
-│                 │                    │                     │                      │              │
-└─────────────────┘                    └─────────┬───────────┘                      └──────────────┘
-                                                 │
-                                                 │  Mongoose ODM
-                                                 ▼
-                                       ┌─────────────────────┐
-                                       │                     │
-                                       │   MongoDB Atlas     │
-                                       │   (Metadata)        │
-                                       │                     │
-                                       └─────────────────────┘
+┌─────────────────────┐     HTTP/REST API      ┌─────────────────────────┐
+│                     │  ←──────────────────→  │                         │
+│   React Frontend    │                        │   Node.js Backend       │
+│   (Vite + Tailwind) │                        │   (Express.js)          │
+│                     │                        │                         │
+└─────────────────────┘                        └────────┬────────────────┘
+                                                        │
+                                    ┌───────────────────┼───────────────────┐
+                                    │                   │                   │
+                                    ▼                   ▼                   ▼
+                          ┌──────────────────┐  ┌──────────────┐  ┌──────────────┐
+                          │                  │  │              │  │              │
+                          │  MongoDB Atlas   │  │   AWS S3     │  │  CloudWatch  │
+                          │  (Metadata)      │  │  (Files)     │  │  (Logs)      │
+                          │                  │  │              │  │              │
+                          └──────────────────┘  └──────────────┘  └──────────────┘
 ```
 
-**Three-tier architecture**: Presentation → Application → Data
+**Three-tier architecture**: Presentation Layer → Application Layer → Data Layer
 
 ---
 
 ## ⚙️ Tech Stack
 
-| Layer           | Technology                                  |
-| --------------- | ------------------------------------------- |
-| **Frontend**    | React 19, Vite 8, Tailwind CSS 3            |
-| **Backend**     | Node.js, Express.js                         |
-| **Database**    | MongoDB Atlas (Mongoose ODM)                |
-| **Cloud Storage** | AWS S3 (Simple Storage Service)           |
-| **Monitoring**  | AWS CloudWatch (Logs + Dashboards)          |
-| **Logging**     | Winston + winston-cloudwatch                |
-| **Authentication** | JWT (JSON Web Tokens) + bcrypt           |
-| **HTTP Client** | Axios (with interceptors)                   |
-| **File Upload** | Multer (memory storage) + AWS SDK v3        |
-| **Security**    | bcrypt, crypto, input sanitization          |
-| **Dev Tools**   | Nodemon, ESLint, PostCSS                    |
+### Frontend
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| React | 19.2.4 | UI framework with hooks and context |
+| Vite | 8.0.0 | Fast build tool and dev server |
+| React Router | 7.13.1 | Client-side routing |
+| Tailwind CSS | 3.3.0 | Utility-first CSS framework |
+| Axios | 1.6.0 | HTTP client with interceptors |
+
+### Backend
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Node.js | 18+ | JavaScript runtime |
+| Express.js | 4.18.2 | Web application framework |
+| Mongoose | 7.6.3 | MongoDB ODM with schema validation |
+| JWT | 9.0.2 | Token-based authentication |
+| bcryptjs | 2.4.3 | Password hashing |
+| Multer | 1.4.5 | File upload handling |
+
+### Cloud Services
+| Service | Purpose |
+|---------|---------|
+| AWS S3 | Scalable object storage for files |
+| AWS CloudWatch | Centralized logging and monitoring |
+| MongoDB Atlas | Managed NoSQL database |
+
+### Security & Utilities
+| Technology | Purpose |
+|------------|---------|
+| Winston | Structured logging framework |
+| winston-cloudwatch | CloudWatch transport for Winston |
+| crypto | Secure token generation |
+| CORS | Cross-origin resource sharing |
 
 ---
 
@@ -153,142 +176,144 @@ Whether it's PDFs, images, spreadsheets, or text files — upload it once, acces
 DocuVault/
 ├── backend/
 │   ├── config/
-│   │   ├── db.js                  # MongoDB connection setup
-│   │   ├── s3.js                  # AWS S3 SDK + Multer configuration
-│   │   └── logger.js              # Winston logger + CloudWatch integration
+│   │   ├── db.js                    # MongoDB connection with retry logic
+│   │   ├── s3.js                    # AWS S3 SDK v3 + Multer configuration
+│   │   └── logger.js                # Winston + CloudWatch integration
 │   ├── controllers/
-│   │   ├── authController.js      # Register & Login handlers
-│   │   ├── documentController.js  # Upload, List, Download, Preview, Delete
-│   │   └── shareController.js     # Share link creation & management
+│   │   ├── authController.js        # Register & Login handlers
+│   │   ├── documentController.js    # Upload, List, Download, Preview, Delete
+│   │   └── shareController.js       # Share link CRUD + access verification
 │   ├── middleware/
-│   │   └── auth.js                # JWT verification middleware
+│   │   └── auth.js                  # JWT verification middleware
 │   ├── models/
-│   │   ├── User.js                # User schema with bcrypt + indexes
-│   │   ├── Document.js            # Document metadata schema + indexes
-│   │   └── SharedLink.js          # Share link schema with analytics
+│   │   ├── User.js                  # User schema with bcrypt hooks
+│   │   ├── Document.js              # Document metadata with indexes
+│   │   └── SharedLink.js            # Share link schema with analytics
 │   ├── routes/
-│   │   ├── authRoutes.js          # POST /api/auth/*
-│   │   ├── documentRoutes.js      # GET/POST/DELETE /api/documents/*
-│   │   └── shareRoutes.js         # GET/POST/DELETE /api/share/*
+│   │   ├── authRoutes.js            # POST /api/auth/*
+│   │   ├── documentRoutes.js        # GET/POST/DELETE /api/documents/*
+│   │   └── shareRoutes.js           # GET/POST/DELETE/PATCH /api/share/*
 │   ├── scripts/
-│   │   ├── clearDatabase.js       # Database cleanup utility
-│   │   └── testCascadeDelete.js   # Test cascade deletion feature
-│   ├── server.js                  # Express entry point
-│   ├── .env                       # Environment variables (create from .env.example)
-│   ├── .env.example               # Environment variable template
+│   │   ├── clearDatabase.js         # Database cleanup utility
+│   │   └── testCascadeDelete.js     # Test cascade deletion feature
+│   ├── server.js                    # Express entry point
+│   ├── .env.example                 # Environment variable template
 │   └── package.json
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Navbar.jsx            # Top navigation bar
-│   │   │   ├── FileCard.jsx          # Document card with actions
-│   │   │   ├── FilePreviewModal.jsx  # Full-screen file preview
-│   │   │   ├── SearchBar.jsx         # Debounced search input
-│   │   │   ├── ProtectedRoute.jsx    # Auth guard for routes
-│   │   │   └── ShareModal.jsx        # Share link creation modal
+│   │   │   ├── Navbar.jsx              # Top navigation with auth state
+│   │   │   ├── FileCard.jsx            # Document card with actions
+│   │   │   ├── FilePreviewModal.jsx    # Full-screen file preview
+│   │   │   ├── SearchBar.jsx           # Debounced search (400ms)
+│   │   │   ├── ProtectedRoute.jsx      # Auth guard for routes
+│   │   │   └── ShareModal.jsx          # Share link creation modal
 │   │   ├── context/
-│   │   │   └── AuthContext.jsx       # React context for auth state
+│   │   │   └── AuthContext.jsx         # Global auth state management
 │   │   ├── pages/
-│   │   │   ├── LoginPage.jsx         # Sign in page
-│   │   │   ├── RegisterPage.jsx      # Create account page
-│   │   │   ├── DashboardPage.jsx     # Welcome + stats + recent docs
-│   │   │   ├── UploadPage.jsx        # Drag & drop file upload
-│   │   │   ├── DocumentsPage.jsx     # Searchable document list
-│   │   │   ├── MySharesPage.jsx      # Share management dashboard
-│   │   │   └── SharedDocumentPage.jsx # Public shared file viewer
+│   │   │   ├── LoginPage.jsx           # Sign in page
+│   │   │   ├── RegisterPage.jsx        # Create account page
+│   │   │   ├── DashboardPage.jsx       # Welcome + stats + recent docs
+│   │   │   ├── UploadPage.jsx          # Drag & drop file upload
+│   │   │   ├── DocumentsPage.jsx       # Searchable document list
+│   │   │   ├── MySharesPage.jsx        # Share management dashboard
+│   │   │   └── SharedDocumentPage.jsx  # Public shared file viewer
 │   │   ├── services/
-│   │   │   └── api.js                # Axios instance + API functions
-│   │   ├── App.jsx                   # React Router setup
-│   │   ├── main.jsx                  # React entry point
-│   │   └── index.css                 # Tailwind + global styles
-│   ├── .env                       # Environment variables (create from .env.example)
-│   ├── .env.example               # Environment variable template
+│   │   │   └── api.js                  # Axios instance + API functions
+│   │   ├── App.jsx                     # React Router setup
+│   │   ├── main.jsx                    # React entry point
+│   │   └── index.css                   # Tailwind + global styles
+│   ├── .env.example                 # Environment variable template
 │   ├── index.html
 │   ├── tailwind.config.cjs
 │   ├── vite.config.js
 │   └── package.json
 │
-├── README.md                      # This file
+└── README.md                        # This file
 ```
+
+---
+
 ## 🔌 API Reference
 
-### Authentication
+### Authentication Endpoints
 
-| Method | Endpoint             | Body                              | Description              |
-| ------ | -------------------- | --------------------------------- | ------------------------ |
-| POST   | `/api/auth/register` | `{ name, email, password }`       | Create a new account     |
-| POST   | `/api/auth/login`    | `{ email, password }`             | Login & receive JWT      |
+| Method | Endpoint | Body | Description | Auth Required |
+|--------|----------|------|-------------|---------------|
+| POST | `/api/auth/register` | `{ name, email, password }` | Create new account | ❌ |
+| POST | `/api/auth/login` | `{ email, password }` | Login & receive JWT | ❌ |
 
-### Documents <sub>(all routes require `Authorization: Bearer <token>`)</sub>
+### Document Management Endpoints
 
-| Method | Endpoint                       | Description                                  |
-| ------ | ------------------------------ | -------------------------------------------- |
-| POST   | `/api/documents/upload`        | Upload a file (multipart/form-data)          |
-| GET    | `/api/documents?search=`       | List all documents (optional search filter)  |
-| GET    | `/api/documents/download/:id`  | Download a file (streams bytes as attachment) |
-| GET    | `/api/documents/preview/:id`   | Preview a file (streams bytes inline)        |
-| DELETE | `/api/documents/:id`           | Delete from S3 + MongoDB                     |
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/documents/upload` | Upload file (multipart/form-data) | ✅ |
+| GET | `/api/documents?search=` | List all documents (optional search) | ✅ |
+| GET | `/api/documents/download/:id` | Download file (streams as attachment) | ✅ |
+| GET | `/api/documents/preview/:id` | Preview file (streams inline) | ✅ |
+| DELETE | `/api/documents/:id` | Delete from S3 + MongoDB | ✅ |
 
-### Share Links <sub>(protected routes require `Authorization: Bearer <token>`)</sub>
+### Share Link Endpoints
 
-| Method | Endpoint                       | Description                                  | Auth Required |
-| ------ | ------------------------------ | -------------------------------------------- | ------------- |
-| POST   | `/api/share/create`            | Create a new share link                      | ✅            |
-| GET    | `/api/share/my-shares`         | Get all user's share links                   | ✅            |
-| GET    | `/api/share/document/:id`      | Get all shares for a document                | ✅            |
-| DELETE | `/api/share/:id`               | Delete a share link                          | ✅            |
-| PATCH  | `/api/share/:id/toggle`        | Toggle share link active/inactive            | ✅            |
-| POST   | `/api/share/access/:token`     | Verify access to shared link (with password) | ❌            |
-| GET    | `/api/share/preview/:token`    | Preview shared document                      | ❌            |
-| GET    | `/api/share/download/:token`   | Download shared document                     | ❌            |
+| Method | Endpoint | Body | Description | Auth Required |
+|--------|----------|------|-------------|---------------|
+| POST | `/api/share/create` | `{ documentId, password?, permission, expiresIn? }` | Create share link | ✅ |
+| GET | `/api/share/my-shares` | - | Get all user's share links | ✅ |
+| GET | `/api/share/document/:id` | - | Get all shares for a document | ✅ |
+| DELETE | `/api/share/:id` | - | Delete share link | ✅ |
+| PATCH | `/api/share/:id/toggle` | - | Toggle active/inactive | ✅ |
+| POST | `/api/share/access/:token` | `{ password? }` | Verify access (with password) | ❌ |
+| GET | `/api/share/preview/:token` | - | Preview shared document | ❌ |
+| GET | `/api/share/download/:token` | - | Download shared document | ❌ |
 
 ---
 
 ## 🗃️ Database Schema
 
-### `users` Collection
+### Users Collection
 
-| Field       | Type     | Constraints             | Index |
-| ----------- | -------- | ----------------------- | ----- |
-| `name`      | String   | Required                | -     |
-| `email`     | String   | Required, unique        | ✅    |
-| `password`  | String   | Required, bcrypt hashed | -     |
-| `createdAt` | Date     | Auto-generated          | -     |
+| Field | Type | Constraints | Index |
+|-------|------|-------------|-------|
+| `name` | String | Required, max 50 chars | - |
+| `email` | String | Required, unique, lowercase | ✅ |
+| `password` | String | Required, bcrypt hashed, min 6 chars | - |
+| `createdAt` | Date | Auto-generated | - |
 
-### `documents` Collection
+### Documents Collection
 
-| Field          | Type     | Description                            | Index |
-| -------------- | -------- | -------------------------------------- | ----- |
-| `fileName`     | String   | Original uploaded file name            | ✅    |
-| `s3Key`        | String   | S3 object key (path in bucket)         | -     |
-| `fileType`     | String   | File extension (e.g., `pdf`, `jpg`)    | -     |
-| `fileSize`     | Number   | Size in bytes                          | -     |
-| `resourceType` | String   | `"image"` or `"raw"` (for compatibility) | -   |
-| `userId`       | ObjectId | Reference to the uploading user        | ✅    |
-| `uploadDate`   | Date     | Auto-generated timestamp               | ✅    |
-
-### `sharedlinks` Collection (NEW!)
-
-| Field            | Type     | Description                                | Index |
-| ---------------- | -------- | ------------------------------------------ | ----- |
-| `token`          | String   | Unique 32-char hex token for the link     | ✅    |
-| `documentId`     | ObjectId | Reference to shared document               | ✅    |
-| `createdBy`      | ObjectId | Reference to user who created share        | ✅    |
-| `password`       | String   | Optional bcrypt hashed password            | -     |
-| `permission`     | String   | `"view"` or `"download"`                   | -     |
-| `expiresAt`      | Date     | Optional expiration timestamp              | ✅    |
-| `accessCount`    | Number   | Number of times link was accessed          | -     |
-| `downloadCount`  | Number   | Number of times file was downloaded        | -     |
-| `lastAccessedAt` | Date     | Last access timestamp                      | -     |
-| `accessLog`      | Array    | Last 50 access entries (IP, user agent)    | -     |
-| `isActive`       | Boolean  | Whether link is currently active           | -     |
-| `createdAt`      | Date     | Share creation timestamp                   | -     |
+| Field | Type | Description | Index |
+|-------|------|-------------|-------|
+| `fileName` | String | Original uploaded file name | ✅ (compound) |
+| `s3Key` | String | S3 object key (path in bucket) | - |
+| `fileType` | String | File extension (e.g., `pdf`, `jpg`) | - |
+| `fileSize` | Number | Size in bytes | - |
+| `resourceType` | String | `"image"` or `"raw"` | - |
+| `userId` | ObjectId | Reference to uploading user | ✅ (compound) |
+| `uploadDate` | Date | Auto-generated timestamp | ✅ (compound) |
 
 **Indexes:**
 - `{ userId: 1, uploadDate: -1 }` — Fast document listing sorted by date
 - `{ userId: 1, fileName: 1 }` — Fast search by filename
-- `{ email: 1 }` — Fast user authentication lookups
+
+### SharedLinks Collection
+
+| Field | Type | Description | Index |
+|-------|------|-------------|-------|
+| `token` | String | Unique 32-char hex token | ✅ (unique) |
+| `documentId` | ObjectId | Reference to shared document | ✅ |
+| `createdBy` | ObjectId | Reference to user who created share | ✅ |
+| `password` | String | Optional bcrypt hashed password | - |
+| `permission` | String | `"view"` or `"download"` | - |
+| `expiresAt` | Date | Optional expiration timestamp | ✅ |
+| `accessCount` | Number | Number of times link was accessed | - |
+| `downloadCount` | Number | Number of times file was downloaded | - |
+| `lastAccessedAt` | Date | Last access timestamp | - |
+| `accessLog` | Array | Last 50 access entries (IP, user agent) | - |
+| `isActive` | Boolean | Whether link is currently active | - |
+| `createdAt` | Date | Share creation timestamp | - |
+
+**Indexes:**
 - `{ token: 1 }` — Fast share link lookups (unique)
 - `{ documentId: 1 }` — Fast document share queries
 - `{ createdBy: 1 }` — Fast user share queries
@@ -300,21 +325,23 @@ DocuVault/
 
 ### Prerequisites
 
-| Requirement     | Version | Notes                                                    |
-| --------------- | ------- | -------------------------------------------------------- |
-| **Node.js**     | v18+    | [Download](https://nodejs.org)                           |
-| **npm**         | v9+     | Comes with Node.js                                       |
-| **MongoDB Atlas** | -     | Free tier is sufficient ([signup](https://www.mongodb.com/atlas)) |
-| **AWS Account** | -       | Free tier available ([signup](https://aws.amazon.com))   |
+| Requirement | Version | Download |
+|-------------|---------|----------|
+| Node.js | 18+ | [nodejs.org](https://nodejs.org) |
+| npm | 9+ | Comes with Node.js |
+| MongoDB Atlas | - | [mongodb.com/atlas](https://www.mongodb.com/atlas) |
+| AWS Account | - | [aws.amazon.com](https://aws.amazon.com) |
 
-### 1️⃣ Clone the Repository
+### Installation
+
+#### 1. Clone the Repository
 
 ```bash
 git clone <your-repo-url>
 cd DocuVault
 ```
 
-### 2️⃣ Backend Setup
+#### 2. Backend Setup
 
 ```bash
 cd backend
@@ -341,12 +368,12 @@ AWS_ACCESS_KEY_ID=your_access_key_id
 AWS_SECRET_ACCESS_KEY=your_secret_access_key
 AWS_S3_BUCKET_NAME=docuvault-files
 
-# CloudWatch Logging (uses same AWS credentials)
+# CloudWatch Logging
 CLOUDWATCH_GROUP_NAME=/docuvault/api
 LOG_LEVEL=info
 NODE_ENV=development
 
-# Frontend URL for CORS (change in production)
+# Frontend URL for CORS
 FRONTEND_URL=http://localhost:5173
 ```
 
@@ -357,30 +384,20 @@ FRONTEND_URL=http://localhost:5173
 1. Sign up at [aws.amazon.com](https://aws.amazon.com)
 2. Go to **S3 Console** → Create a bucket (e.g., `docuvault-files`)
 3. Go to **IAM Console** → Create a user with `AmazonS3FullAccess` policy
-4. Create **Access Keys** for the user
-5. Copy **Access Key ID** and **Secret Access Key**
-6. Paste them into your `.env` file along with your bucket name and region
-
-For detailed setup instructions, see [AWS_S3_MIGRATION_GUIDE.md](AWS_S3_MIGRATION_GUIDE.md)
-
-#### CloudWatch Logging Setup
-1. CloudWatch uses the same AWS credentials as S3
-2. IAM user needs `CloudWatchLogsFullAccess` policy
-3. Set `NODE_ENV=production` to enable CloudWatch logging
-4. Logs appear in CloudWatch Console under log group `/docuvault/api`
-5. View logs at: https://console.aws.amazon.com/cloudwatch/home#logsV2:log-groups
-
-For detailed setup and dashboard creation, see [CLOUDWATCH_SETUP.md](CLOUDWATCH_SETUP.md)
+4. Add `CloudWatchLogsFullAccess` policy for logging
+5. Create **Access Keys** for the user
+6. Copy **Access Key ID** and **Secret Access Key**
+7. Paste them into your `.env` file
 
 #### MongoDB Atlas Setup
 1. Sign up at [mongodb.com/atlas](https://www.mongodb.com/atlas)
 2. Create a **free M0 cluster** (512MB storage)
 3. Click **Connect** → **Drivers** → copy the connection string
 4. Replace `<username>` and `<password>` with your database user credentials
-5. Under **Network Access**, add `0.0.0.0/0` to allow connections from anywhere (for development)
+5. Under **Network Access**, add `0.0.0.0/0` (for development)
 6. For production, whitelist only your server's IP address
 
-#### JWT Secret
+#### JWT Secret Generation
 Generate a strong random string (32+ characters):
 ```bash
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
@@ -394,11 +411,11 @@ Start the backend server:
 npm run dev
 ```
 
-> ✅ The API will be running at `http://localhost:5000`
+> ✅ API running at `http://localhost:5000`
 
-### 3️⃣ Frontend Setup
+#### 3. Frontend Setup
 
-Open a new terminal window:
+Open a new terminal:
 
 ```bash
 cd frontend
@@ -419,28 +436,21 @@ Start the frontend development server:
 npm run dev
 ```
 
-> ✅ The app will open at `http://localhost:5173`
+> ✅ App running at `http://localhost:5173`
 
-### 4️⃣ Test the Application
+#### 4. Test the Application
 
 1. Open `http://localhost:5173` in your browser
-2. Click **Create account** and register a new user
-3. Upload a test document (PDF, image, or text file)
-4. Try previewing, downloading, and deleting documents
-5. Test the search functionality
-6. **Test file sharing:**
-   - Click the share icon on any document
-   - Create a share link with password protection (min 6 characters)
-   - Copy the link and open it in an incognito window
-   - Test password verification and file access
-   - View analytics in the "My Shares" page
-   - Delete a document and verify share links are removed
+2. Click **Create account** and register
+3. Upload a test document
+4. Try preview, download, and search
+5. Create a share link with password protection
+6. Open the share link in an incognito window
+7. View analytics in "My Shares" page
 
 ---
 
 ## 🛠️ Utility Scripts
-
-The backend includes helpful utility scripts:
 
 ```bash
 cd backend
@@ -452,66 +462,26 @@ npm run clear-db
 npm run test-cascade
 ```
 
-**Script Details:**
-- `clear-db` - Removes all users, documents, and share links from database
-- `test-cascade` - Verifies that deleting a document also deletes its share links
-
----
-
-## 🖼️ Application Pages
-
-| Page           | Route              | Description                                           | Auth Required |
-| -------------- | ------------------ | ----------------------------------------------------- | ------------- |
-| **Login**      | `/login`           | Sign in with email & password                         | ❌            |
-| **Register**   | `/register`        | Create a new account with name, email & password      | ❌            |
-| **Dashboard**  | `/dashboard`       | Welcome banner, document stats, quick actions, recent files | ✅      |
-| **Upload**     | `/upload`          | Drag & drop or file browser with progress bar         | ✅            |
-| **Documents**  | `/documents`       | Full document list with search, preview, download, delete, share | ✅ |
-| **My Shares**  | `/shares`          | Manage all share links with analytics dashboard       | ✅            |
-| **Shared Doc** | `/shared/:token`   | Public shared document viewer (password if protected) | ❌            |
-
----
-
-## 🛡️ Security Features
-
-| Feature                    | Implementation                                              |
-| -------------------------- | ----------------------------------------------------------- |
-| Password hashing           | bcrypt with 10 salt rounds                                  |
-| Route protection           | JWT middleware on all document routes                        |
-| Token delivery             | `Authorization: Bearer <token>` header                      |
-| CORS protection            | Configurable origin whitelist via `FRONTEND_URL`            |
-| File type validation       | Client-side (MIME type) + server-side (Cloudinary config)   |
-| File size limit            | 10 MB max per upload (configurable)                         |
-| User isolation             | All queries filter by `userId` — users only see their own files |
-| Download security          | Files streamed through backend — S3 URLs never exposed to client |
-| Environment variables      | Sensitive credentials stored in `.env` files (not in code)  |
-| Database indexes           | Optimized queries prevent performance-based attacks         |
-| Share link security        | 32-char random tokens, optional password protection         |
-| Share expiration           | Automatic validation on every access attempt                |
-| Access tracking            | IP addresses and user agents logged for security auditing   |
-| Cascade deletion           | Share links automatically removed when document is deleted   |
-| Input sanitization         | XSS protection for file names and user inputs                |
-
 ---
 
 ## 📂 Supported File Types
 
-| Category     | Extensions                          | Preview Support |
-| ------------ | ----------------------------------- | --------------- |
-| Documents    | PDF, DOC, DOCX                      | ✅ PDF only     |
-| Spreadsheets | XLS, XLSX, CSV                      | ✅ CSV only     |
-| Presentations | PPT, PPTX                          | ❌              |
-| Images       | JPG, JPEG, PNG, GIF, WebP, SVG, BMP | ✅              |
-| Text & Code  | TXT, JSON, XML, HTML, CSS, JS, MD   | ✅              |
-| Archives     | ZIP, RAR                            | ❌              |
+| Category | Extensions | Preview Support |
+|----------|-----------|-----------------|
+| Documents | PDF, DOC, DOCX | ✅ PDF only |
+| Spreadsheets | XLS, XLSX, CSV | ✅ CSV only |
+| Presentations | PPT, PPTX | ❌ |
+| Images | JPG, JPEG, PNG, GIF, WebP, SVG, BMP | ✅ |
+| Text & Code | TXT, JSON, XML, HTML, CSS, JS, MD | ✅ |
+| Archives | ZIP, RAR | ❌ |
 
 ---
 
 ## 🚢 Production Deployment
 
-### Backend Deployment (Node.js)
+### Backend Deployment
 
-**Recommended Platforms:** Railway, Render, Heroku, DigitalOcean, AWS
+**Recommended Platforms:** Railway, Render, Heroku, DigitalOcean, AWS EC2
 
 1. **Build the application:**
    ```bash
@@ -519,25 +489,13 @@ npm run test-cascade
    npm install --production
    ```
 
-2. **Set environment variables** on your hosting platform:
-   - `PORT` (usually auto-set by platform)
-   - `MONGODB_URI` (your production MongoDB connection string)
-   - `JWT_SECRET` (strong random string)
-   - `JWT_EXPIRE` (e.g., `7d`)
-   - `AWS_REGION` (e.g., `us-east-1`)
-   - `AWS_ACCESS_KEY_ID`
-   - `AWS_SECRET_ACCESS_KEY`
-   - `AWS_S3_BUCKET_NAME`
-   - `CLOUDWATCH_GROUP_NAME` (e.g., `/docuvault/api`)
-   - `LOG_LEVEL` (e.g., `info`)
-   - `NODE_ENV` (set to `production` for CloudWatch logging)
-   - `FRONTEND_URL` (your production frontend URL)
+2. **Set environment variables** on your hosting platform (see `.env.example`)
 
 3. **Start command:** `npm start`
 
-4. **Health check endpoint:** `GET /` returns `{ success: true, message: "Cloud DMS API is running 🚀" }`
+4. **Health check:** `GET /` returns `{ success: true, message: "Cloud DMS API is running 🚀" }`
 
-### Frontend Deployment (Static Site)
+### Frontend Deployment
 
 **Recommended Platforms:** Vercel, Netlify, Cloudflare Pages
 
@@ -548,11 +506,11 @@ npm run test-cascade
    ```
 
 2. **Set environment variable:**
-   - `VITE_API_URL` = your production backend URL (e.g., `https://api.yourdomain.com/api`)
+   - `VITE_API_URL` = your production backend URL
 
-3. **Deploy the `dist/` folder** to your hosting platform
+3. **Deploy the `dist/` folder**
 
-4. **Configure redirects** for React Router (SPA):
+4. **Configure SPA redirects:**
    
    **Vercel** (`vercel.json`):
    ```json
@@ -570,112 +528,38 @@ npm run test-cascade
 
 - [ ] Test user registration and login
 - [ ] Test file upload, preview, download, delete
-- [ ] Verify CORS is working (no console errors)
-- [ ] Check MongoDB Atlas IP whitelist (add production server IP)
-- [ ] Verify S3 uploads are working (check S3 console)
+- [ ] Verify CORS is working
+- [ ] Check MongoDB Atlas IP whitelist
+- [ ] Verify S3 uploads are working
+- [ ] Test file sharing with password protection
 - [ ] Test on mobile devices
 - [ ] Set up SSL/TLS certificates (HTTPS)
-- [ ] Configure custom domain (optional)
-- [ ] Set up monitoring and error logging
+- [ ] Configure custom domain
 - [ ] Enable MongoDB Atlas backups
+- [ ] Set up CloudWatch dashboards
 
 ---
 
-## 🔧 Configuration Reference
+## 🛡️ Security Features
 
-### Backend Environment Variables
-
-| Variable                  | Required | Default | Description                                    |
-| ------------------------- | -------- | ------- | ---------------------------------------------- |
-| `PORT`                    | No       | `5000`  | Server port                                    |
-| `MONGODB_URI`             | Yes      | -       | MongoDB connection string                      |
-| `JWT_SECRET`              | Yes      | -       | Secret key for JWT signing (32+ chars)         |
-| `JWT_EXPIRE`              | No       | `7d`    | JWT token expiration time                      |
-| `AWS_REGION`              | Yes      | -       | AWS region (e.g., `us-east-1`)                 |
-| `AWS_ACCESS_KEY_ID`       | Yes      | -       | AWS IAM access key ID                          |
-| `AWS_SECRET_ACCESS_KEY`   | Yes      | -       | AWS IAM secret access key                      |
-| `AWS_S3_BUCKET_NAME`      | Yes      | -       | S3 bucket name for file storage                |
-| `CLOUDWATCH_GROUP_NAME`   | No       | `/docuvault/api` | CloudWatch log group name             |
-| `LOG_LEVEL`               | No       | `info`  | Logging level (error/warn/info/debug)          |
-| `NODE_ENV`                | No       | `development` | Environment (development/production)     |
-| `FRONTEND_URL`            | No       | `http://localhost:5173` | Frontend URL for CORS whitelist |
-
-### Frontend Environment Variables
-
-| Variable        | Required | Default                      | Description                    |
-| --------------- | -------- | ---------------------------- | ------------------------------ |
-| `VITE_API_URL`  | No       | `http://localhost:5000/api`  | Backend API base URL           |
-
----
-
-## 🧪 Testing
-
-### Manual Testing Checklist
-
-**Authentication:**
-- [ ] Register with valid credentials
-- [ ] Register with existing email (should fail)
-- [ ] Login with valid credentials
-- [ ] Login with invalid credentials (should fail)
-- [ ] Access protected route without token (should redirect to login)
-- [ ] Logout and verify redirect to login
-
-**File Upload:**
-- [ ] Upload PDF file
-- [ ] Upload image file (JPG, PNG)
-- [ ] Upload text file (TXT, JSON)
-- [ ] Upload file > 10MB (should fail with error message)
-- [ ] Upload unsupported file type (should fail)
-- [ ] Verify upload progress bar works
-- [ ] Verify file appears in document list after upload
-
-**File Management:**
-- [ ] Search for documents by filename
-- [ ] Preview image file
-- [ ] Preview PDF file
-- [ ] Preview text file
-- [ ] Download file and verify integrity
-- [ ] Delete file and verify removal from list
-- [ ] Verify deleted file is removed from S3
-
-**File Sharing:**
-- [ ] Create share link with view-only permission
-- [ ] Create share link with download permission
-- [ ] Create password-protected share link (min 6 characters)
-- [ ] Try password less than 6 characters (should show error)
-- [ ] Create share link with expiration (24 hours)
-- [ ] Copy share link to clipboard
-- [ ] Access share link in incognito window
-- [ ] Verify password protection works
-- [ ] Verify expiration works (after time passes)
-- [ ] Toggle share link active/inactive (should show loading spinner)
-- [ ] Delete share link (should show loading spinner)
-- [ ] View analytics in My Shares page
-- [ ] Verify access count increments
-- [ ] Verify download count increments (download permission only)
-- [ ] Delete document and verify share links are removed (cascade deletion)
-- [ ] Test XSS protection with HTML in filename
-
-**UI/UX:**
-- [ ] Test on mobile device (responsive design)
-- [ ] Test on tablet device
-- [ ] Verify all animations work smoothly
-- [ ] Check loading states during async operations
-- [ ] Verify error messages are clear and helpful
-- [ ] Test keyboard shortcuts (Esc to close modal)
-
-### Automated Testing (Future Enhancement)
-
-```bash
-# Unit tests
-npm test
-
-# Integration tests
-npm run test:integration
-
-# E2E tests
-npm run test:e2e
-```
+| Feature | Implementation |
+|---------|----------------|
+| Password hashing | bcrypt with 10 salt rounds, minimum 6 characters |
+| Route protection | JWT middleware on all protected routes |
+| Token delivery | `Authorization: Bearer <token>` header |
+| CORS protection | Configurable origin whitelist via `FRONTEND_URL` |
+| File validation | Client-side (MIME type) + server-side (extension) |
+| File size limit | 10 MB max per upload (configurable) |
+| User isolation | All queries filter by `userId` |
+| Download security | Files streamed through backend, S3 URLs never exposed |
+| Environment variables | Sensitive credentials in `.env` files |
+| Database indexes | Optimized queries prevent performance attacks |
+| Share link security | 32-char cryptographically secure tokens |
+| Share expiration | Automatic validation on every access |
+| Access tracking | IP addresses and user agents logged |
+| Cascade deletion | Share links removed when document is deleted |
+| Input sanitization | XSS protection for file names and inputs |
+| CloudWatch logging | Comprehensive audit trails |
 
 ---
 
@@ -684,162 +568,64 @@ npm run test:e2e
 ### Common Issues
 
 **Issue:** "Cannot connect to MongoDB"
-```
-Solution: 
-1. Check MongoDB Atlas IP whitelist (add 0.0.0.0/0 for development)
-2. Verify MONGODB_URI in .env file
-3. Ensure database user has correct permissions
-```
+- **Solution:** Check your `MONGODB_URI` in `.env`. Ensure your IP is whitelisted in MongoDB Atlas Network Access.
 
-**Issue:** "S3 upload failed"
-```
-Solution:
-1. Verify AWS credentials in .env file
-2. Check S3 bucket exists and name is correct
-3. Verify IAM user has S3 permissions
-4. Check file size (must be < 10MB)
-5. Verify AWS region is correct
-```
+**Issue:** "AWS S3 upload failed"
+- **Solution:** Verify your AWS credentials in `.env`. Ensure the IAM user has `AmazonS3FullAccess` policy.
 
 **Issue:** "CORS error in browser console"
-```
-Solution:
-1. Ensure FRONTEND_URL in backend .env matches your frontend URL
-2. Verify backend server is running
-3. Check browser console for exact error message
-```
+- **Solution:** Ensure `FRONTEND_URL` in backend `.env` matches your frontend URL exactly.
 
-**Issue:** "Token expired" or "Not authorized" errors"
-```
-Solution:
-1. User needs to log in again (token expired after 7 days)
-2. Clear localStorage and log in again
-3. Verify JWT_SECRET is set correctly in backend .env
-```
+**Issue:** "JWT token invalid"
+- **Solution:** Check that `JWT_SECRET` is the same in both development and production. Clear browser localStorage and login again.
 
-**Issue:** "Upload progress not showing"
-```
-Solution:
-1. Ensure you're using axios version 1.6.0 or higher
-2. Check browser console for errors
-3. Verify uploadDocument function in api.js accepts config parameter
-```
+**Issue:** "File preview not working"
+- **Solution:** Check browser console for errors. Ensure the file type is supported. Try downloading the file instead.
 
-**Issue:** "Preview modal not working"
-```
-Solution:
-1. Check browser console for errors
-2. Verify VITE_API_URL is set correctly in frontend .env
-3. Ensure backend preview endpoint is accessible
-4. Check if file type is supported for preview
-```
+**Issue:** "Share link password not working"
+- **Solution:** Ensure password is at least 6 characters. Check that you're entering the exact password used during creation.
+
+**Issue:** "CloudWatch logs not appearing"
+- **Solution:** Verify AWS credentials have `CloudWatchLogsFullAccess` policy. Check that `NODE_ENV=production` is set.
 
 ---
 
 ## 📊 Performance Optimization
 
-### Database Indexes
-- ✅ Compound index on `{ userId: 1, uploadDate: -1 }` for fast document listing
-- ✅ Compound index on `{ userId: 1, fileName: 1 }` for fast search
-- ✅ Index on `{ email: 1 }` for fast user lookups
-
-### Frontend Optimizations
-- ✅ Debounced search (400ms delay) to reduce API calls
-- ✅ Lazy loading of components
-- ✅ Optimized images via Cloudinary
-- ✅ Code splitting by route (Vite automatic)
-- ✅ Minified production build
-
-### Backend Optimizations
-- ✅ File streaming (no memory buffering)
-- ✅ Efficient MongoDB queries with indexes
-- ✅ JWT stateless authentication
-- ✅ AWS S3 for scalable, cost-effective storage
-- ✅ CloudWatch logging for monitoring and debugging
-
-### AWS S3 Benefits
-- ✅ **Cost-effective**: Pay only for what you use (~$0.023/GB/month)
-- ✅ **Free tier**: 5GB storage, 20K GET, 2K PUT requests/month (12 months)
-- ✅ **Scalable**: Handles unlimited files and traffic
-- ✅ **Reliable**: 99.999999999% durability
-- ✅ **Secure**: Encryption at rest, IAM access control
-
-### CloudWatch Logging Benefits
-- ✅ **Centralized logging**: All logs in one place
-- ✅ **Structured JSON**: Easy to search and analyze
-- ✅ **Real-time monitoring**: Track errors as they happen
-- ✅ **Free tier**: 5GB ingestion, 5GB storage/month
-- ✅ **Dashboards**: Visualize metrics and trends
-- ✅ **Alerts**: Get notified of critical issues
+- **Database Indexes** — Strategic indexes on frequently queried fields
+- **Memory-Efficient Logging** — Access logs limited to last 50 entries
+- **Debounced Search** — 400ms delay to reduce unnecessary API calls
+- **Streaming Downloads** — Files streamed directly from S3 to client
+- **Lazy Loading** — Components loaded on demand
+- **Optimized Queries** — Mongoose lean queries where appropriate
+- **Connection Pooling** — MongoDB connection reuse
 
 ---
 
-## 🐛 Troubleshooting
+## 🔮 Future Enhancements
 
-### Common Issues
-
-**Issue: "Failed to connect to MongoDB"**
-- Verify your `MONGODB_URI` in `.env` is correct
-- Check MongoDB Atlas Network Access allows your IP (0.0.0.0/0 for development)
-- Ensure database user credentials are correct
-
-**Issue: "S3 upload failed" or "Access Denied"**
-- Verify `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in `.env`
-- Check IAM user has `AmazonS3FullAccess` policy attached
-- Ensure `AWS_S3_BUCKET_NAME` matches your actual bucket name
-- Verify `AWS_REGION` is correct (e.g., `us-east-1`, `ap-south-1`)
-- Check S3 bucket exists in the AWS Console
-- Ensure file size is within limits (default: 10MB)
-
-**Issue: "Token expired" or constant logouts**
-- Check `JWT_SECRET` is set in backend `.env`
-- Verify `JWT_EXPIRE` is set (default: 7d)
-- Clear browser localStorage and login again
-
-**Issue: "CORS error" in browser console**
-- Verify `FRONTEND_URL` in backend `.env` matches your frontend URL
-- Check CORS configuration in `backend/server.js`
-- For production, update allowed origins
-
-**Issue: Share links not working**
-- Verify share link is active (not toggled off)
-- Check if link has expired
-- Ensure password is correct (if protected)
-- Check browser console for errors
-
-**Issue: Duplicate export error in api.js**
-- This was fixed - ensure you have the latest code
-- Only one `getApiBaseUrl` export should exist at line 22
-
-**Issue: Share links not deleted when document is removed**
-- This was fixed with cascade deletion
-- Run `npm run test-cascade` to verify it works
-- Check backend logs for cascade deletion messages
-
-### Debug Mode
-
-Enable detailed logging:
-
-```bash
-# Backend
-cd backend
-DEBUG=* npm run dev
-
-# Check MongoDB queries
-MONGOOSE_DEBUG=true npm run dev
-```
+- [ ] Folder organization and hierarchical structure
+- [ ] Bulk file upload with progress tracking
+- [ ] Advanced search with filters (date, type, size)
+- [ ] File versioning and history
+- [ ] Collaborative editing for documents
+- [ ] Real-time notifications
+- [ ] Two-factor authentication (2FA)
+- [ ] Role-based access control (RBAC)
+- [ ] API rate limiting
+- [ ] Automated testing (unit, integration, E2E)
+- [ ] Docker containerization
+- [ ] CI/CD pipeline
+- [ ] Multi-language support (i18n)
+- [ ] Dark/light theme toggle
+- [ ] File compression before upload
+- [ ] Virus scanning integration
 
 ---
 
-## 🤝 Contributing
+## 📄 License
 
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+This project is licensed under the MIT License.
 
 ---
 
