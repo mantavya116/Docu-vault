@@ -115,26 +115,28 @@
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────────┐     HTTP/REST API      ┌─────────────────────────┐
-│                     │  ←──────────────────→  │                         │
-│   React Frontend    │                        │   Node.js Backend       │
-│   (Vite + Tailwind) │                        │   (Express.js)          │
-│                     │                        │                         │
-└─────────────────────┘                        └────────┬────────────────┘
-                                                        │
-                                    ┌───────────────────┼───────────────────┐
-                                    │                   │                   │
-                                    ▼                   ▼                   ▼
-                          ┌──────────────────┐  ┌──────────────┐  ┌──────────────┐
-                          │                  │  │              │  │              │
-                          │  MongoDB Atlas   │  │   AWS S3     │  │  CloudWatch  │
-                          │  (Metadata)      │  │  (Files)     │  │  (Logs)      │
-                          │                  │  │              │  │              │
-                          └──────────────────┘  └──────────────┘  └──────────────┘
+```text
+┌─────────────────────┐       HTTPS / REST       ┌─────────────────────────┐
+│     AWS Amplify     │   ←──────────────────→   │     AWS CloudFront      │
+│  (React Frontend)   │                          │   (Security & Proxy)    │
+└─────────────────────┘                          └───────────┬─────────────┘
+                                                             │ 
+                                                             ▼ HTTP
+                                                 ┌─────────────────────────┐
+                                                 │  AWS Elastic Beanstalk  │
+                                                 │    (Node.js Backend)    │
+                                                 └───────────┬─────────────┘
+                                                             │
+                                     ┌───────────────────────┼───────────────────────┐
+                                     │                       │                       │
+                                     ▼                       ▼                       ▼
+                           ┌──────────────────┐      ┌──────────────┐      ┌──────────────┐
+                           │  MongoDB Atlas   │      │    AWS S3    │      │  CloudWatch  │
+                           │    (Metadata)    │      │    (Files)   │      │    (Logs)    │
+                           └──────────────────┘      └──────────────┘      └──────────────┘
 ```
 
-**Three-tier architecture**: Presentation Layer → Application Layer → Data Layer
+**Four-tier cloud architecture**: Frontend Hosting (Amplify) → CDN/Proxy (CloudFront) → Application Layer (Beanstalk) → Data Layer (Atlas/S3)
 
 ---
 
@@ -162,9 +164,12 @@
 ### Cloud Services
 | Service | Purpose |
 |---------|---------|
-| AWS S3 | Scalable object storage for files |
-| AWS CloudWatch | Centralized logging and monitoring |
-| MongoDB Atlas | Managed NoSQL database |
+| AWS Amplify | Frontend CI/CD pipeline and secure hosting |
+| AWS Elastic Beanstalk | Scalable backend PaaS and load balancing |
+| AWS CloudFront | Global CDN, HTTPS termination, and security proxy |
+| AWS S3 | Scalable object storage for documents |
+| AWS CloudWatch | Centralized logging and server monitoring |
+| MongoDB Atlas | Managed NoSQL database for application data |
 
 ### Security & Utilities
 | Technology | Purpose |
